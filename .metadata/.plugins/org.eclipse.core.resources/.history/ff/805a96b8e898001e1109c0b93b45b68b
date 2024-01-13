@@ -1,0 +1,150 @@
+package com.app.core;
+
+import java.util.ArrayList;
+
+import com.app.exception.CustomException;
+
+public class SortedSinglyLinkedList {
+
+	class Node {
+		private Node next;
+		private int value;
+
+		public Node(int value) {  //Parameterized constructor 
+
+			this.next = null;
+			this.value = value;
+		}
+
+		public Node() {
+
+			this.next = null;
+			this.value = 0;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+
+		public void setNext(Node next) {
+			this.next = next;
+		}
+
+		public int getValue() {
+			return value;
+		}
+
+		public void setValue(int value) {
+			this.value = value;
+		}
+
+	}// node class
+
+	private Node head;
+
+	public SortedSinglyLinkedList() {
+		super();
+		this.head = null;
+	}
+
+	public Node getHead() {
+		return head;
+	}
+
+	public void setHead(Node head) {
+		this.head = head;
+	}
+	
+	public void add(int value) {  //add element sorted
+		
+		Node newNode = new Node(value);
+		if (head == null)
+			head = newNode;
+		else {
+			Node trav = head;
+			Node temp = null;
+			while (trav != null && trav.value < value) {
+				temp = trav;
+				trav = trav.next;
+			}
+			// if it is least element then 
+			if (trav == head) {
+				newNode.next = head;
+				head = newNode;
+			} else {// upcoming varibale is in between
+				newNode.next = temp.next;
+				temp.next = newNode;
+			}
+		}
+	}
+
+
+
+	public void removeAll(ArrayList<Integer> list2) throws CustomException { // to remove all list of elements 
+		for (Integer element : list2) {                  //for each
+			remove(element);                       //added another remove function to remove each element 
+		}
+	}
+
+	private void remove(Integer element) throws CustomException {  //to remove each element
+		if (head == null) {
+			System.out.println("list is already empty ");
+			throw new CustomException ("list is already empty ");
+		} else {
+			Node trav = head;
+			Node temp = null;
+			while (trav!= null) {
+				if(trav.value ==element && trav==head) {
+					head=head.next;
+					System.out.println("Removed first element "+element);
+				}
+				else if (trav.value == element) {
+					temp.next = trav.next;
+                       System.out.println("removed successfully "+element);
+				}
+				temp = trav;
+				trav = trav.next;
+
+			}
+
+		}
+
+	}
+
+
+	public int findIndexOf(int element) {   // to find position of element or value 
+		Node trav = head;
+		for (int i = 1; trav != null; i++) {
+
+			if (trav.value == element)
+				return i;
+               trav=trav.next;
+		}
+		return -1;
+	}
+@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();//  as string are immutable and we cannot change 
+		if(head==null) {
+			System.out.println("empty list!!!");
+		return ("list is already emplty!!!");
+		}
+		Node trav=head;
+		while(trav!=null)
+		{
+		s.append(trav.value);
+		s.append(" ,");
+		s.setLength(s.length()-2);
+		trav=trav.next;
+		}
+		return s.toString();
+
+	}
+
+}// class linkedlist
+
+
+
+
+
+

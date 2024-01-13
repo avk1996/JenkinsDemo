@@ -1,0 +1,10 @@
+package utils;
+
+import org.openqa.selenium.WebDriver;
+
+public class UtilsMethod {
+	public WebDriver LaunchBrowser(String url)
+	{
+		return null;
+	}	
+}

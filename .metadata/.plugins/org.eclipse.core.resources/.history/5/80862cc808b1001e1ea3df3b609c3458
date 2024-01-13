@@ -1,0 +1,8 @@
+package basic;
+
+public class Snippet {
+	public static void main(String[] args) {
+		basic
+	}
+}
+

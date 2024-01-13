@@ -1,0 +1,16 @@
+package utils;
+
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class UtilsMethod {
+	@Test
+	public WebDriver LaunchBrowser(String url)
+	{
+		WebDriverManager.chromiumdriver().setup();
+		
+		return driver;
+	}	
+}
